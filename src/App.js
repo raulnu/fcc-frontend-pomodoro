@@ -1,7 +1,7 @@
 import Controladores from "./Components/Controladores";
 import Header from "./Components/Header";
 import Timer from "./Components/Timer";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import Footer from "./Components/Footer";
 
 function App() {
@@ -9,8 +9,14 @@ function App() {
   const [sessionSeconds, setSessionSeconds] = useState(0);
   const [breakMinutes, setBreakMinutes] = useState(5);
   const [playing, setPlaying] = useState(false);
+  const [staticSessionMinutes, setStaticSessionMinutes] = useState(25);
+  const [staticBreakMinutes, setStaticBreakMinutes] = useState(5);
+  const [sessionOrBreak, setSessionOrBreak] = useState(true);
 
   useEffect(() => {
+    const timeAudio = new Audio(
+      "http://cd.textfiles.com/cdaction/cdaction47b/BEAT2000/SOUNDS/SFX/BELLFILL.WAV"
+    );
     const countDown = () => {
       if (sessionSeconds > 0) {
         setSessionSeconds(sessionSeconds - 1);
@@ -19,6 +25,7 @@ function App() {
         setSessionSeconds(59);
       }
       if (sessionMinutes === 0 && sessionSeconds === 1) {
+        timeAudio.play();
         setPlaying(false);
       }
     };
@@ -46,12 +53,19 @@ function App() {
           breakMinutes={breakMinutes}
           setBreakMinutes={setBreakMinutes}
           playing={playing}
+          staticSessionMinutes={staticSessionMinutes}
+          setStaticSessionMinutes={setStaticSessionMinutes}
+          staticBreakMinutes={staticBreakMinutes}
+          setStaticBreakMinutes={setStaticBreakMinutes}
         />
         <Timer
           sessionMinutes={sessionMinutes}
+          setSessionMinutes={setSessionMinutes}
           sessionSeconds={sessionSeconds}
+          setSessionSeconds={setSessionSeconds}
           playing={playing}
           setPlaying={setPlaying}
+          staticSessionMinutes={staticSessionMinutes}
         />
       </main>
       <Footer />

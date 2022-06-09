@@ -8,6 +8,10 @@ export default function Controladores(props) {
     breakMinutes,
     setBreakMinutes,
     playing,
+    staticSessionMinutes,
+    setStaticSessionMinutes,
+    staticBreakMinutes,
+    setStaticBreakMinutes,
   } = props;
   return (
     <section className="controladores col-12 mt-1">
@@ -18,6 +22,8 @@ export default function Controladores(props) {
           minutes={sessionMinutes}
           setMinutes={setSessionMinutes}
           playing={playing}
+          staticMinutes={staticSessionMinutes}
+          setStaticMinutes={setStaticSessionMinutes}
         />
         <Controlador
           title={"Break"}
@@ -25,6 +31,8 @@ export default function Controladores(props) {
           minutes={breakMinutes}
           setMinutes={setBreakMinutes}
           playing={playing}
+          staticMinutes={staticBreakMinutes}
+          setStaticMinutes={setStaticBreakMinutes}
         />
       </div>
     </section>
@@ -37,4 +45,8 @@ Controladores.propTypes = {
   breakMinutes: PropTypes.number.isRequired,
   setBreakMinutes: PropTypes.func.isRequired,
   playing: PropTypes.bool.isRequired,
+  staticSessionMinutes: PropTypes.number.isRequired,
+  setStaticSessionMinutes: PropTypes.func.isRequired,
+  staticBreakMinutes: PropTypes.number.isRequired,
+  setStaticBreakMinutes: PropTypes.func.isRequired,
 };

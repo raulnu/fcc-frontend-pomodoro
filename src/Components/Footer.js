@@ -3,7 +3,10 @@ export default function Footer() {
     <footer className="pie row text-center mt-4">
       <span>Developed by Raúl Navarro Uribe</span>
       <span>
-        Check the code on <a href="">github</a>
+        Check the code on{" "}
+        <a href="https://github.com/r-navarrouribe/fcc-frontend-pomodoro">
+          github
+        </a>
       </span>
     </footer>
   );

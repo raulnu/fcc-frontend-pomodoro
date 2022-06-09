@@ -1,14 +1,34 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
 
 export default function Controlador(props) {
-  const { id, title, minutes, setMinutes, playing } = props;
-  const time = minutes;
+  const {
+    id,
+    title,
+    minutes,
+    setMinutes,
+    playing,
+    staticMinutes,
+    setStaticMinutes,
+  } = props;
+
   const handleMore = () => {
-    setMinutes(minutes + 1);
+    if (playing) {
+      setStaticMinutes(staticMinutes + 1);
+    } else {
+      setStaticMinutes(staticMinutes + 1);
+      setMinutes(minutes + 1);
+    }
   };
   const handleLess = () => {
-    setMinutes(minutes - 1);
+    if (playing) {
+      setStaticMinutes(staticMinutes - 1);
+    } else {
+      setStaticMinutes(staticMinutes - 1);
+      setMinutes(minutes - 1);
+    }
   };
+
   return (
     <div
       className={`controlador col-3 m-3 border ${
@@ -26,9 +46,7 @@ export default function Controlador(props) {
         >
           <span>+</span>
         </button>
-        <span className="numero col-4 text-center">
-          {playing ? minutes : time}
-        </span>
+        <span className="numero col-4 text-center">{staticMinutes}</span>
         <button
           type="button"
           className="sumar-restar btn btn-danger rounded-circle col-4"
@@ -47,4 +65,6 @@ Controlador.propTypes = {
   minutes: PropTypes.number.isRequired,
   setMinutes: PropTypes.func.isRequired,
   playing: PropTypes.bool.isRequired,
+  staticMinutes: PropTypes.number.isRequired,
+  setStaticMinutes: PropTypes.func.isRequired,
 };
