@@ -8,7 +8,7 @@ function App() {
   const [sessionMinutes, setSessionMinutes] = useState(25);
   const [sessionSeconds, setSessionSeconds] = useState(0);
   const [breakMinutes, setBreakMinutes] = useState(5);
-  const [breakSeconds, setBreakSeconds] = useState(0);
+  const [breakSeconds, setBreakSeconds] = useState(5);
   const [playing, setPlaying] = useState(false);
   const [staticSessionMinutes, setStaticSessionMinutes] = useState(25);
   const [staticBreakMinutes, setStaticBreakMinutes] = useState(5);
@@ -16,7 +16,7 @@ function App() {
 
   useEffect(() => {
     const timeAudio = new Audio(
-      "http://cd.textfiles.com/cdaction/cdaction47b/BEAT2000/SOUNDS/SFX/BELLFILL.WAV"
+      "https://s3.amazonaws.com/tsatsatzu-alexa/sound/bells/BELL.mp3"
     );
     const countDown = () => {
       if (sessionOrBreak) {
