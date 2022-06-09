@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
 
 export default function Controlador(props) {
   const {
@@ -10,6 +11,16 @@ export default function Controlador(props) {
     staticMinutes,
     setStaticMinutes,
   } = props;
+  const [changing, setChanging] = useState(false);
+  const toggleChanging = () => {
+    setChanging(!changing);
+  };
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setStaticMinutes(parseInt(e.target.value));
+    setMinutes(parseInt(e.target.value));
+  };
 
   const handleMore = () => {
     setStaticMinutes(staticMinutes + 1);
@@ -38,7 +49,30 @@ export default function Controlador(props) {
         >
           <span>+</span>
         </button>
-        <span className="numero col-6 text-center">{staticMinutes}</span>
+        {changing ? (
+          <form className="form col-6 d-flex flex-column align-items-center">
+            <input
+              type="text"
+              className="num-input form-control col-12 text-center m-2"
+              onChange={handleChange}
+            />
+            <button
+              type="submit"
+              className="btn btn-info"
+              onClick={toggleChanging}
+            >
+              Set
+            </button>
+          </form>
+        ) : (
+          <button
+            className="numero col-6 text-center btn"
+            onClick={toggleChanging}
+            disabled={playing ? true : false}
+          >
+            {staticMinutes}
+          </button>
+        )}
         <button
           type="button"
           className="restar sumar-restar btn rounded-circle col-2"
