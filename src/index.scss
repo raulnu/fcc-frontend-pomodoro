@@ -38,7 +38,7 @@ code {
         box-shadow: $regular-shadow;
         padding: 15px 20px;
         .controller-title {
-          font-size: 30px;
+          font-size: 20px;
         }
         .sumar {
           background-color: #000000a2;
@@ -114,6 +114,13 @@ code {
 
 @media (min-width: 768px) {
   .principal {
+    .controladores {
+      .controlador {
+        .controller-title {
+          font-size: 30px;
+        }
+      }
+    }
     .timer {
       .timer-title {
         font-size: 35px;
