@@ -41,26 +41,38 @@ export default function Timer(props) {
     setSessionOrBreak(!sessionOrBreak);
   };
   return (
-    <section className="timer col-4 text-center mt-3 border border-dark rounded p-3">
+    <section
+      className={`timer col-10 col-sm-8 col-lg-6 text-center mt-4 rounded p-3 ${
+        sessionOrBreak ? "session-box" : "break-box"
+      }`}
+    >
       <div className="row justify-content-center align-items-center">
-        <h2 className="col-6">{sessionOrBreak ? "Session" : "Break"}</h2>
+        <h2 className="timer-title col-6 mr-2">
+          {sessionOrBreak ? "Session" : "Break"}
+        </h2>
         <button
           type="button"
-          className="change-button btn btn-primary col-6 d-flex justify-content-center align-items-center"
+          className="change-button btn col-4 d-flex justify-content-between align-items-center"
           onClick={handleChange}
           disabled={playing ? true : false}
         >
+          Switch
           <i className="fa-solid fa-repeat"></i>
         </button>
       </div>
-      <span className="time-left">
-        {sessionOrBreak ? sessionDisplay : breakDisplay}
-      </span>
+      <div className="row">
+        <span className="time-left col-12">
+          {sessionOrBreak ? sessionDisplay : breakDisplay}
+        </span>
+        <span className="frase">
+          {sessionOrBreak ? "Let's get some work done!" : "Have some rest..."}
+        </span>
+      </div>
       <div className="row justify-content-center mt-2">
         <button className="btn btn-info col-5 m-1" onClick={handlePlay}>
           Play / Pause
         </button>
-        <button className="btn btn-warning col-3 m-1" onClick={resetHandler}>
+        <button className="btn btn-warning col-5 m-1" onClick={resetHandler}>
           Reset
         </button>
       </div>

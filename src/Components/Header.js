@@ -1,6 +1,6 @@
 const Header = () => {
   return (
-    <header className="row text-center mt-4">
+    <header className="cabecera row text-center mt-3">
       <h1 className="title">Pomodoro Timer</h1>
     </header>
   );
