@@ -22,8 +22,8 @@ export default function Controlador(props) {
 
   return (
     <div
-      className={`controlador col-5 col-lg-4 ${
-        id === "session" ? "session-box" : "break-box"
+      className={`controlador col-8 col-sm-5 col-lg-4 mb-2 ${
+        id === "session" ? `session-box` : "break-box"
       } rounded`}
     >
       <div className="row">

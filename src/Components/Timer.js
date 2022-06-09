@@ -42,7 +42,7 @@ export default function Timer(props) {
   };
   return (
     <section
-      className={`timer col-10 col-sm-8 col-lg-6 text-center mt-4 rounded p-3 ${
+      className={`timer col-10 col-sm-8 col-lg-6 text-center mt-3 rounded p-3 ${
         sessionOrBreak ? "session-box" : "break-box"
       }`}
     >

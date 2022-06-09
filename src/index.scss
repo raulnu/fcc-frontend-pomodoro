@@ -58,9 +58,9 @@ code {
           background-color: rgb(179, 182, 189);
         }
         .sumar-restar {
-          height: 25px;
-          width: 25px;
-          font-size: 15px;
+          height: 40px;
+          width: 40px;
+          font-size: 30px;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -114,15 +114,6 @@ code {
 
 @media (min-width: 768px) {
   .principal {
-    .controladores {
-      .controlador {
-        .sumar-restar {
-          height: 40px;
-          width: 40px;
-          font-size: 30px;
-        }
-      }
-    }
     .timer {
       .timer-title {
         font-size: 35px;
