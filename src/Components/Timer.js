@@ -1,9 +1,22 @@
 import PropTypes from "prop-types";
 
 export default function Timer(props) {
-  const { sessionMinutes, sessionSeconds, playing, setPlaying } = props;
+  const {
+    sessionMinutes,
+    setSessionMinutes,
+    sessionSeconds,
+    setSessionSeconds,
+    playing,
+    setPlaying,
+    staticSessionMinutes,
+  } = props;
   const handlePlay = () => {
     setPlaying(!playing);
+  };
+  const resetHandler = () => {
+    setPlaying(false);
+    setSessionMinutes(staticSessionMinutes);
+    setSessionSeconds(0);
   };
   return (
     <section className="timer col-4 text-center mt-3 border border-dark rounded p-3">
@@ -15,7 +28,9 @@ export default function Timer(props) {
         <button className="btn btn-info col-5 m-1" onClick={handlePlay}>
           Play / Pause
         </button>
-        <button className="btn btn-warning col-3 m-1">Reset</button>
+        <button className="btn btn-warning col-3 m-1" onClick={resetHandler}>
+          Reset
+        </button>
       </div>
     </section>
   );
@@ -23,7 +38,10 @@ export default function Timer(props) {
 
 Timer.propTypes = {
   sessionMinutes: PropTypes.number.isRequired,
+  setSessionMinutes: PropTypes.func.isRequired,
   sessionSeconds: PropTypes.number.isRequired,
-  setPlaying: PropTypes.func.isRequired,
+  setSessionSeconds: PropTypes.func.isRequired,
   playing: PropTypes.bool.isRequired,
+  setPlaying: PropTypes.func.isRequired,
+  staticSessionMinutes: PropTypes.number.isRequired,
 };
