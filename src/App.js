@@ -8,6 +8,7 @@ function App() {
   const [sessionMinutes, setSessionMinutes] = useState(25);
   const [sessionSeconds, setSessionSeconds] = useState(0);
   const [breakMinutes, setBreakMinutes] = useState(5);
+  const [breakSeconds, setBreakSeconds] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [staticSessionMinutes, setStaticSessionMinutes] = useState(25);
   const [staticBreakMinutes, setStaticBreakMinutes] = useState(5);
@@ -18,15 +19,36 @@ function App() {
       "http://cd.textfiles.com/cdaction/cdaction47b/BEAT2000/SOUNDS/SFX/BELLFILL.WAV"
     );
     const countDown = () => {
-      if (sessionSeconds > 0) {
-        setSessionSeconds(sessionSeconds - 1);
+      if (sessionOrBreak) {
+        if (sessionSeconds > 0) {
+          setSessionSeconds(sessionSeconds - 1);
+        } else {
+          setSessionMinutes(sessionMinutes - 1);
+          setSessionSeconds(59);
+        }
+        if (sessionMinutes === 0 && sessionSeconds === 1) {
+          timeAudio.play();
+          setSessionOrBreak(!sessionOrBreak);
+          setTimeout(() => {
+            setSessionMinutes(staticSessionMinutes);
+            setSessionSeconds(0);
+          }, 500);
+        }
       } else {
-        setSessionMinutes(sessionMinutes - 1);
-        setSessionSeconds(59);
-      }
-      if (sessionMinutes === 0 && sessionSeconds === 1) {
-        timeAudio.play();
-        setPlaying(false);
+        if (breakSeconds > 0) {
+          setBreakSeconds(breakSeconds - 1);
+        } else {
+          setBreakMinutes(breakMinutes - 1);
+          setBreakSeconds(59);
+        }
+        if (breakMinutes === 0 && breakSeconds === 1) {
+          timeAudio.play();
+          setSessionOrBreak(!sessionOrBreak);
+          setTimeout(() => {
+            setBreakMinutes(staticBreakMinutes);
+            setBreakSeconds(0);
+          }, 500);
+        }
       }
     };
     if (playing) {
@@ -38,9 +60,12 @@ function App() {
   }, [
     playing,
     sessionSeconds,
-    setSessionSeconds,
-    setSessionMinutes,
     sessionMinutes,
+    breakSeconds,
+    breakMinutes,
+    sessionOrBreak,
+    staticSessionMinutes,
+    staticBreakMinutes,
   ]);
 
   return (
@@ -63,9 +88,16 @@ function App() {
           setSessionMinutes={setSessionMinutes}
           sessionSeconds={sessionSeconds}
           setSessionSeconds={setSessionSeconds}
+          breakMinutes={breakMinutes}
+          setBreakMinutes={setBreakMinutes}
+          breakSeconds={breakSeconds}
+          setBreakSeconds={setBreakSeconds}
           playing={playing}
           setPlaying={setPlaying}
           staticSessionMinutes={staticSessionMinutes}
+          staticBreakMinutes={staticBreakMinutes}
+          sessionOrBreak={sessionOrBreak}
+          setSessionOrBreak={setSessionOrBreak}
         />
       </main>
       <Footer />

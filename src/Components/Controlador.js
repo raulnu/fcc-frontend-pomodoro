@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
 
 export default function Controlador(props) {
   const {
@@ -13,20 +12,12 @@ export default function Controlador(props) {
   } = props;
 
   const handleMore = () => {
-    if (playing) {
-      setStaticMinutes(staticMinutes + 1);
-    } else {
-      setStaticMinutes(staticMinutes + 1);
-      setMinutes(minutes + 1);
-    }
+    setStaticMinutes(staticMinutes + 1);
+    setMinutes(minutes + 1);
   };
   const handleLess = () => {
-    if (playing) {
-      setStaticMinutes(staticMinutes - 1);
-    } else {
-      setStaticMinutes(staticMinutes - 1);
-      setMinutes(minutes - 1);
-    }
+    setStaticMinutes(staticMinutes - 1);
+    setMinutes(minutes - 1);
   };
 
   return (
@@ -43,6 +34,7 @@ export default function Controlador(props) {
           type="button"
           className="sumar-restar btn btn-success rounded-circle col-4"
           onClick={handleMore}
+          disabled={playing ? true : false}
         >
           <span>+</span>
         </button>
@@ -51,6 +43,7 @@ export default function Controlador(props) {
           type="button"
           className="sumar-restar btn btn-danger rounded-circle col-4"
           onClick={handleLess}
+          disabled={playing ? true : false}
         >
           <span>-</span>
         </button>
