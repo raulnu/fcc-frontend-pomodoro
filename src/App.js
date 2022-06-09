@@ -71,7 +71,7 @@ function App() {
   return (
     <div className="container">
       <Header />
-      <main className="principal row justify-content-center">
+      <main className="principal row justify-content-center mt-4">
         <Controladores
           sessionMinutes={sessionMinutes}
           setSessionMinutes={setSessionMinutes}

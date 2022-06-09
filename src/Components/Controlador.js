@@ -22,26 +22,26 @@ export default function Controlador(props) {
 
   return (
     <div
-      className={`controlador col-3 m-3 border ${
-        id === "session" ? "border-info" : "border-warning"
+      className={`controlador col-5 col-lg-4 ${
+        id === "session" ? "session-box" : "break-box"
       } rounded`}
     >
       <div className="row">
-        <h2 className="text-center">{`${title} Time`}</h2>
+        <h2 className="controller-title text-center">{`${title} Time`}</h2>
       </div>
       <div className="row justify-content-around align-items-center">
         <button
           type="button"
-          className="sumar-restar btn btn-success rounded-circle col-4"
+          className="sumar sumar-restar btn rounded-circle col-2"
           onClick={handleMore}
           disabled={playing ? true : false}
         >
           <span>+</span>
         </button>
-        <span className="numero col-4 text-center">{staticMinutes}</span>
+        <span className="numero col-6 text-center">{staticMinutes}</span>
         <button
           type="button"
-          className="sumar-restar btn btn-danger rounded-circle col-4"
+          className="restar sumar-restar btn rounded-circle col-2"
           onClick={handleLess}
           disabled={playing ? true : false}
         >

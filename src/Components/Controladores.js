@@ -14,7 +14,7 @@ export default function Controladores(props) {
     setStaticBreakMinutes,
   } = props;
   return (
-    <section className="controladores col-12 mt-1">
+    <section className="controladores col-md-12">
       <div className="row justify-content-center">
         <Controlador
           title={"Session"}

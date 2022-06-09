@@ -1,8 +1,9 @@
+$back-color: #84cae5;
+$regular-border: 2px solid #67b2cf;
+$regular-shadow: 4px 4px 5px #0000003a;
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #b0e9ff;
@@ -13,29 +14,122 @@ code {
     monospace;
 }
 
-.principal {
-  .controladores {
-    .controlador {
-      .sumar-restar {
-        height: 40px;
-        width: 40px;
-        font-size: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+@media (min-width: 300px) {
+  .cabecera {
+    background-color: $back-color;
+    padding: 20px;
+    border: $regular-border;
+    border-radius: 10px;
+    box-shadow: $regular-shadow;
+    .title {
+      font-weight: 600;
+    }
+  }
+  .principal {
+    background-color: $back-color;
+    border: $regular-border;
+    box-shadow: $regular-shadow;
+    border-radius: 10px;
+    padding: 25px;
+
+    .controladores {
+      .controlador {
+        margin: 0px 15px;
+        box-shadow: $regular-shadow;
+        padding: 15px 20px;
+        .controller-title {
+          font-size: 30px;
+        }
+        .sumar {
+          background-color: #000000a2;
+          color: #ffffffd5;
+          transition: 300ms;
+        }
+        .sumar:hover {
+          background-color: #2c2c2c96;
+        }
+        .restar {
+          background-color: rgb(201, 213, 231);
+          color: #222;
+          border: 1px solid #333;
+          transition: 300ms;
+        }
+        .restar:hover {
+          background-color: rgb(179, 182, 189);
+        }
+        .sumar-restar {
+          height: 25px;
+          width: 25px;
+          font-size: 15px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .numero {
+          font-size: 25px;
+          font-weight: 600;
+        }
       }
-      .numero {
-        font-size: 40px;
+    }
+    .timer {
+      box-shadow: $regular-shadow;
+      .timer-title {
+        padding: 0;
+        font-size: 25px;
+        font-weight: 600;
+      }
+      .change-button {
+        background-color: $back-color;
+        transition: 300ms;
+      }
+      .change-button:hover {
+        background-color: #96d3eb;
+      }
+      .time-left {
+        font-size: 50px;
+        font-weight: bold;
+      }
+      .frase {
+        font-size: 18px;
+        font-weight: 200;
       }
     }
   }
-  .timer {
-    .change-button {
-      width: 25px;
-      height: 25px;
+
+  .pie {
+    background-color: $back-color;
+    border: $regular-border;
+    border-radius: 10px;
+    box-shadow: $regular-shadow;
+    padding: 15px;
+  }
+
+  .session-box {
+    background-color: #56a7c7;
+  }
+  .break-box {
+    background-color: #a7d8e9;
+  }
+}
+
+@media (min-width: 768px) {
+  .principal {
+    .controladores {
+      .controlador {
+        .sumar-restar {
+          height: 40px;
+          width: 40px;
+          font-size: 30px;
+        }
+      }
     }
-    .time-left {
-      font-size: 45px;
+    .timer {
+      .timer-title {
+        font-size: 35px;
+      }
+      .frase {
+        font-size: 25px;
+      }
     }
   }
 }
