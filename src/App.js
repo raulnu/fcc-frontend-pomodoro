@@ -8,7 +8,7 @@ function App() {
   const [sessionMinutes, setSessionMinutes] = useState(25);
   const [sessionSeconds, setSessionSeconds] = useState(0);
   const [breakMinutes, setBreakMinutes] = useState(5);
-  const [breakSeconds, setBreakSeconds] = useState(5);
+  const [breakSeconds, setBreakSeconds] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [staticSessionMinutes, setStaticSessionMinutes] = useState(25);
   const [staticBreakMinutes, setStaticBreakMinutes] = useState(5);
