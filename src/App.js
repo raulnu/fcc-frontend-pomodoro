@@ -3,6 +3,7 @@ import Header from "./Components/Header";
 import Timer from "./Components/Timer";
 import { useState, useEffect } from "react";
 import Footer from "./Components/Footer";
+import sounds from "./sounds";
 
 function App() {
   const [sessionMinutes, setSessionMinutes] = useState(25);
@@ -13,10 +14,13 @@ function App() {
   const [staticSessionMinutes, setStaticSessionMinutes] = useState(25);
   const [staticBreakMinutes, setStaticBreakMinutes] = useState(5);
   const [sessionOrBreak, setSessionOrBreak] = useState(true);
+  const [alarmSelected, setAlarmSelected] = useState("fight-start");
 
   useEffect(() => {
     const timeAudio = new Audio(
-      "https://s3.amazonaws.com/tsatsatzu-alexa/sound/bells/BELL.mp3"
+      sounds
+        .filter((sound) => sound.name === alarmSelected)
+        .map((sound) => sound.url)
     );
     const countDown = () => {
       if (sessionOrBreak) {
@@ -54,7 +58,7 @@ function App() {
     if (playing) {
       const intervalId = setInterval(() => {
         countDown();
-      }, 1000);
+      }, 100);
       return () => clearInterval(intervalId);
     }
   }, [
@@ -98,6 +102,8 @@ function App() {
           staticBreakMinutes={staticBreakMinutes}
           sessionOrBreak={sessionOrBreak}
           setSessionOrBreak={setSessionOrBreak}
+          alarmSelected={alarmSelected}
+          setAlarmSelected={setAlarmSelected}
         />
       </main>
       <Footer />

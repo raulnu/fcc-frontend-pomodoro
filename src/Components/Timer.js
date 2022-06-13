@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import AlarmSelector from "./AlarmSelector";
 
 export default function Timer(props) {
   const {
@@ -16,6 +17,8 @@ export default function Timer(props) {
     staticBreakMinutes,
     sessionOrBreak,
     setSessionOrBreak,
+    alarmSelected,
+    setAlarmSelected,
   } = props;
   // Displays
   const sessionDisplay = `${
@@ -76,6 +79,11 @@ export default function Timer(props) {
           Reset
         </button>
       </div>
+      <AlarmSelector
+        playing={playing}
+        alarmSelected={alarmSelected}
+        setAlarmSelected={setAlarmSelected}
+      />
     </section>
   );
 }
@@ -95,4 +103,6 @@ Timer.propTypes = {
   staticBreakMinutes: PropTypes.number.isRequired,
   sessionOrBreak: PropTypes.bool.isRequired,
   setSessionOrBreak: PropTypes.func.isRequired,
+  alarmSelected: PropTypes.string.isRequired,
+  setAlarmSelected: PropTypes.func.isRequired,
 };
