@@ -3,7 +3,7 @@ import Header from "./Components/Header";
 import Timer from "./Components/Timer";
 import { useState, useEffect } from "react";
 import Footer from "./Components/Footer";
-import sounds from "./sounds";
+import sounds from "./resources/sounds";
 
 function App() {
   const [sessionMinutes, setSessionMinutes] = useState(25);

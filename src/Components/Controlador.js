@@ -33,7 +33,7 @@ export default function Controlador(props) {
 
   return (
     <div
-      className={`controlador col-8 col-sm-5 col-lg-4 mb-2 ${
+      className={`controlador col-10 col-sm-5 col-lg-4 mb-2 ${
         id === "session" ? `session-box` : "break-box"
       } rounded`}
     >
@@ -52,6 +52,7 @@ export default function Controlador(props) {
         {changing ? (
           <form className="form col-6 d-flex flex-column align-items-center">
             <input
+              autoFocus
               type="text"
               className="num-input form-control col-12 text-center m-2"
               onChange={handleChange}
