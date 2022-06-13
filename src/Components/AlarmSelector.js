@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import sounds from "../sounds";
+import sounds from "../resources/sounds";
 
 export default function AlarmSelector({
   playing,
@@ -17,7 +17,7 @@ export default function AlarmSelector({
   };
 
   return (
-    <div className="col-12 mt-4">
+    <div className="col-12 mt-5">
       <div className="row justify-content-center">
         <label htmlFor="alarm-selector col-12">Select your alarm sound:</label>
         <div className="col-12 col-sm-7 m-2">

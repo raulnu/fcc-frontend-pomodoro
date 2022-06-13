@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import AlarmSelector from "./AlarmSelector";
+import ToDoList from "./ToDoList/ToDoList";
 
 export default function Timer(props) {
   const {
@@ -45,7 +46,7 @@ export default function Timer(props) {
   };
   return (
     <section
-      className={`timer col-10 col-sm-8 col-lg-6 text-center mt-3 rounded p-3 ${
+      className={`timer col-12 col-lg-10 col-xl-8 text-center mt-3 rounded p-3 ${
         sessionOrBreak ? "session-box" : "break-box"
       }`}
     >
@@ -84,6 +85,7 @@ export default function Timer(props) {
         alarmSelected={alarmSelected}
         setAlarmSelected={setAlarmSelected}
       />
+      <ToDoList />
     </section>
   );
 }
