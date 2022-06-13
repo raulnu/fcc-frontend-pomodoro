@@ -1,12 +1,19 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-export default function ToDoItem({ id, taskName, toDoTasks, setToDoTasks }) {
+export default function ToDoItem({
+  id,
+  taskName,
+  toDoTasks,
+  setToDoTasks,
+  setStorage,
+}) {
   const [taskText, setTaskText] = useState(taskName);
   const [editing, setEditing] = useState(false);
   const [completed, setCompleted] = useState(false);
   const deleteHandler = () => {
     setToDoTasks(toDoTasks.filter((task) => id !== task.id));
+    setStorage();
   };
 
   return (
@@ -28,6 +35,7 @@ export default function ToDoItem({ id, taskName, toDoTasks, setToDoTasks }) {
             onClick={(e) => {
               e.preventDefault();
               setEditing(false);
+              setStorage();
             }}
           >
             Edit
@@ -83,5 +91,6 @@ ToDoItem.propTypes = {
   taskName: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   toDoTasks: PropTypes.array.isRequired,
-  // setTodoTasks: PropTypes.func.isRequired,
+  setToDoTasks: PropTypes.func.isRequired,
+  setStorage: PropTypes.func.isRequired,
 };

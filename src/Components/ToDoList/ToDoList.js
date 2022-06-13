@@ -2,17 +2,25 @@ import ToDoItem from "./ToDoItem";
 import { useState } from "react";
 
 export default function ToDoList() {
-  const [toDoTasks, setToDoTasks] = useState([
-    { task: "Start working", id: 0 },
-  ]);
+  const [toDoTasks, setToDoTasks] = useState(
+    localStorage.getItem("tasks") === null
+      ? [{ task: "Start working", id: 0 }]
+      : JSON.parse(localStorage.getItem("tasks"))
+  );
   const [newTasking, setNewTasking] = useState(false);
   const [taskIndex, setTaskIndex] = useState(1);
   const [newTask, setNewTask] = useState("");
+
+  const setStorage = () => {
+    localStorage.setItem("tasks", JSON.stringify(toDoTasks));
+  };
+
   const newTaskHandler = (e) => {
     e.preventDefault();
     setToDoTasks([...toDoTasks, { task: newTask, id: taskIndex }]);
     setTaskIndex(taskIndex + 1);
     setNewTasking(false);
+    setStorage();
   };
   return (
     <section className="to-do-section mt-5 row justify-content-center">
@@ -25,6 +33,7 @@ export default function ToDoList() {
             taskName={task.task}
             toDoTasks={toDoTasks}
             setToDoTasks={setToDoTasks}
+            setStorage={setStorage}
           />
         ))}
       </ul>
