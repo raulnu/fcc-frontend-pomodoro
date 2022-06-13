@@ -58,7 +58,7 @@ function App() {
     if (playing) {
       const intervalId = setInterval(() => {
         countDown();
-      }, 100);
+      }, 1000);
       return () => clearInterval(intervalId);
     }
   }, [
@@ -70,6 +70,7 @@ function App() {
     sessionOrBreak,
     staticSessionMinutes,
     staticBreakMinutes,
+    alarmSelected,
   ]);
 
   return (
