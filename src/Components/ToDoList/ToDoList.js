@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export default function ToDoList() {
   const [toDoTasks, setToDoTasks] = useState(
     localStorage.getItem("tasks") === null
-      ? [{ task: "Start working", id: 0 }]
+      ? [{ task: "Start working", id: 0, completed: false }]
       : JSON.parse(localStorage.getItem("tasks"))
   );
   const [newTasking, setNewTasking] = useState(false);
@@ -23,7 +23,11 @@ export default function ToDoList() {
     e.preventDefault();
     setToDoTasks([
       ...toDoTasks,
-      { task: newTask, id: toDoTasks[toDoTasks.length - 1].id + 1 },
+      {
+        task: newTask,
+        id: toDoTasks[toDoTasks.length - 1].id + 1,
+        completed: false,
+      },
     ]);
     setNewTasking(false);
   };
@@ -35,6 +39,7 @@ export default function ToDoList() {
           <ToDoItem
             key={task.id}
             id={task.id}
+            completed={task.completed}
             taskName={task.task}
             toDoTasks={toDoTasks}
             setToDoTasks={setToDoTasks}
