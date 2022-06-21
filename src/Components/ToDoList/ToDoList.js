@@ -1,5 +1,5 @@
 import ToDoItem from "./ToDoItem";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function ToDoList() {
   const [toDoTasks, setToDoTasks] = useState(
@@ -8,19 +8,24 @@ export default function ToDoList() {
       : JSON.parse(localStorage.getItem("tasks"))
   );
   const [newTasking, setNewTasking] = useState(false);
-  const [taskIndex, setTaskIndex] = useState(1);
   const [newTask, setNewTask] = useState("");
 
-  const setStorage = () => {
-    localStorage.setItem("tasks", JSON.stringify(toDoTasks));
+  useEffect(
+    () => localStorage.setItem("tasks", JSON.stringify(toDoTasks)),
+    [toDoTasks]
+  );
+
+  const toggleNewTasking = () => {
+    setNewTasking(!newTasking);
   };
 
   const newTaskHandler = (e) => {
     e.preventDefault();
-    setToDoTasks([...toDoTasks, { task: newTask, id: taskIndex }]);
-    setTaskIndex(taskIndex + 1);
+    setToDoTasks([
+      ...toDoTasks,
+      { task: newTask, id: toDoTasks[toDoTasks.length - 1].id + 1 },
+    ]);
     setNewTasking(false);
-    setStorage();
   };
   return (
     <section className="to-do-section mt-5 row justify-content-center">
@@ -33,7 +38,6 @@ export default function ToDoList() {
             taskName={task.task}
             toDoTasks={toDoTasks}
             setToDoTasks={setToDoTasks}
-            setStorage={setStorage}
           />
         ))}
       </ul>
@@ -41,7 +45,7 @@ export default function ToDoList() {
         <button
           type="button"
           className="btn change-button col-5"
-          onClick={() => setNewTasking(true)}
+          onClick={toggleNewTasking}
         >
           New task
         </button>
@@ -67,7 +71,7 @@ export default function ToDoList() {
             <button
               type="button"
               className="btn btn-danger col-2"
-              onClick={() => setNewTasking(false)}
+              onClick={toggleNewTasking}
             >
               ❌
             </button>

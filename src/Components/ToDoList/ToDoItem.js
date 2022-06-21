@@ -1,19 +1,32 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-export default function ToDoItem({
-  id,
-  taskName,
-  toDoTasks,
-  setToDoTasks,
-  setStorage,
-}) {
+export default function ToDoItem({ id, taskName, toDoTasks, setToDoTasks }) {
   const [taskText, setTaskText] = useState(taskName);
   const [editing, setEditing] = useState(false);
   const [completed, setCompleted] = useState(false);
   const deleteHandler = () => {
     setToDoTasks(toDoTasks.filter((task) => id !== task.id));
-    setStorage();
+  };
+
+  const changeHandler = (e) => {
+    setTaskText(e.target.value);
+  };
+
+  const toggleCompleted = (e) => {
+    e.preventDefault();
+    setCompleted(!completed);
+  };
+
+  const toggleEditing = (e) => {
+    e.preventDefault();
+    if (editing) {
+      const taskIndex = toDoTasks.findIndex((task) => task.id === id);
+      toDoTasks[taskIndex] = { task: taskText, id: id };
+      localStorage.setItem("tasks", JSON.stringify(toDoTasks));
+    }
+
+    setEditing(!editing);
   };
 
   return (
@@ -25,18 +38,14 @@ export default function ToDoItem({
               autoFocus
               type="text"
               className="form-control"
-              onChange={(e) => setTaskText(e.target.value)}
+              onChange={changeHandler}
               defaultValue={taskText}
             />
           </fieldset>
           <button
             type="submit"
             className="btn btn-info col-3"
-            onClick={(e) => {
-              e.preventDefault();
-              setEditing(false);
-              setStorage();
-            }}
+            onClick={toggleEditing}
           >
             Edit
           </button>
@@ -56,18 +65,14 @@ export default function ToDoItem({
                 <button
                   type="button"
                   className="btn btn-info task-button col-5"
-                  onClick={() => {
-                    setEditing(true);
-                  }}
+                  onClick={toggleEditing}
                 >
                   Edit
                 </button>
                 <button
                   type="button"
                   className="btn btn-success task-button col-5"
-                  onClick={() => {
-                    setCompleted(!completed);
-                  }}
+                  onClick={toggleCompleted}
                 >
                   Done
                 </button>
@@ -92,5 +97,4 @@ ToDoItem.propTypes = {
   id: PropTypes.number.isRequired,
   toDoTasks: PropTypes.array.isRequired,
   setToDoTasks: PropTypes.func.isRequired,
-  setStorage: PropTypes.func.isRequired,
 };
